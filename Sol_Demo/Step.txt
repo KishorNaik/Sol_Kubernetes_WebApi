@@ -1,0 +1,100 @@
+Step 1:
+Install Docker Desktop
+
+Step 2:
+Enable Kubernets. 
+Open Docker desktop-> go to Setting -> go to Kubernetes section -> Enable Kubernetes
+
+Step 3:
+Install kubectl cli.
+
+Go to VS Code -> download the Kubernetes extension.
+
+Step 4:
+install Bridge to Kubernetes extension in visual studio
+
+Configuration:
+Go to Tools -> Select "Options" -> Search Kubernentes Debugging Tool -> Select Bridge to Kubernetes -> Disconnet After Debugging -> false 
+
+Step 5:
+Create a Asp.net core Web APi with docker enable feature.
+	4.1 Run the Application.
+
+Step 6:
+Add Docker Compose.
+Select the Api Solution -> Select "Add" -> Select "Container Orchestrator Support" -> Select "Docker Compose"
+
+Step 6:
+Deploy docker image to Docker Hub
+
+Step 7:
+Create a namespace in kubernetes cluster. Open the terminal 
+	- Create
+	kubectl create namespace myapp
+	- Delete
+	kubectl delete namespace myapp
+
+Step 7:
+Create a Kubernetes deployment.yaml file. [check source code] open the terminal [go to the project root path] 
+
+	7.1 using command
+	kubectl apply -n myapp -f deployment.yaml
+
+	7.2 View Deployment
+	kubectl get -n myapp deployment
+
+	7.3 Delete deployment
+	kubectl delete -n myapp -f deployment.yaml
+
+Step 8:
+Create a Kubernetes service.yaml file [check source Code]
+
+	8.1 using command
+	kubectl apply -n myapp -f service.yaml
+
+	8.2 view service
+	kubectl get -n myapp service
+
+	8.3 Delete the Service
+	kubectl delete -n myapp -f service.yaml
+	
+	Delete Specefic Service
+	kubectl delete svc <YourServiceName> -n myapp
+
+	8.3 View Pods
+	kubectl get pod -n myapp
+
+	8.4 Delete Pods
+	kubectl delete pods podname -n myapp
+
+	kubectl delete pods --all -n myapp
+
+	8.5 Describe Pod
+	kubectl describe pod podname -n myapp
+
+Step 9:
+Run Producer.Api using Bridge To Kubernentes
+	Select the Solution -> Go to Properties -> Go to Debug Section -> Click on Change button
+	-> Select the namespace and select the service which we have to debug the service.
+
+	Note: Uncheck "Enable Routing Selection" and do not specify the "Application Url"
+	
+
+Step 10:
+Run Service like this.
+http://producer-api-service/swagger
+
+
+Resource:
+
+https://docs.microsoft.com/en-us/visualstudio/containers/bridge-to-kubernetes?view=vs-2019
+
+https://www.dotnetcurry.com/aspnet-core/kubernetes-for-developers
+
+https://medium.com/medialesson/create-build-test-and-deploy-asp-net-core-in-kubernetes-with-azure-devops-4474308e8768
+
+https://levelup.gitconnected.com/deploying-net-core-application-on-local-kubernetes-cluster-d4a0473d1543
+
+https://medium.com/@ravi.aakula/cloud-agnostic-microservices-kubernetes-asp-net-core-7577471e8b54
+
+https://stackoverflow.com/questions/58798201/how-to-make-multiple-pods-communicate-with-each-other-on-kubernetes

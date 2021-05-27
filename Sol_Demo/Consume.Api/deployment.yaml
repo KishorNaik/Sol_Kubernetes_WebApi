@@ -1,0 +1,22 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consume-api
+spec:
+  selector:
+    matchLabels:
+      run: consume-api
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: consume-api
+    spec:
+      containers:
+        - name: consume-api
+          image: kishornaik/consumeapi:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

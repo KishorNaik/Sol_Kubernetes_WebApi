@@ -1,0 +1,22 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-api
+spec:
+  selector:
+    matchLabels:
+      run: producer-api
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: producer-api
+    spec:
+      containers:
+        - name: producer-api
+          image: kishornaik/producerapi:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
